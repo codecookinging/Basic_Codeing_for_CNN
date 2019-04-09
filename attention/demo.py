@@ -1,6 +1,5 @@
 import torch.nn as nn
 import math
-
 def conv3x3(in_planes,out_planes,stride=1):
 
     """
@@ -10,7 +9,6 @@ def conv3x3(in_planes,out_planes,stride=1):
     :return:
     """
     return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False)
-
 class BasicBlock(nn.Module):
     expansion =1
     def __init__(self, inplanes, planes, stride =1 ,downsample =None):
@@ -51,12 +49,9 @@ class BasicBlock(nn.Module):
         out = self.sigmoid(out)
         out = out.view(out.size(0), out.size(1), 1, 1)
         out = out*original_out
-
         out += residual
         out = self.relu(out)
         return out
-
-
 class SENet(nn.Module):
 
     def __init(self, block, layers, num_classes = 1000):
@@ -73,16 +68,11 @@ class SENet(nn.Module):
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
         self.avgpool = nn.AvgPool2d(7, stride=1)
         self.fc = nn.Linear(512*block.expansion,num_classes)
-
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 n = m.kernel_size[0]*m.kernel_size[1]*m.out_channels
                 m.weight.data.normal_(0,math.sqrt(2./n))
                 m.bias.data.zero_()
-
-
-
-
     def _make_layer(self, block, planes, blocks, stride=1):
         downsample = None
 
@@ -100,8 +90,6 @@ class SENet(nn.Module):
             layers.append(block(self.inplanes,planes))
 
         return nn.Sequential(*layers)
-
-
     def forward(self, x):
         x = self.conv1(x)
         x = self.bn1(x)

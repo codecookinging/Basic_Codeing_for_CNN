@@ -28,8 +28,9 @@ https://www.zhihu.com/people/zou-xiao-xiao-24/activities
 https://zhuanlan.zhihu.com/p/36436452
 https://zhuanlan.zhihu.com/p/60123836
 https://zhuanlan.zhihu.com/p/58776542
-
+https://kratzert.github.io/openlearning
 #### jog links
+https://www.wondercv.com/
 https://github.com/amusi/AI-Job-Notes#Coding
 
 #### attention 
